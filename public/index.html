@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+html,
+body,
+#map-canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px
+}
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIibKI1F-iQpG8m-8ahhUZj8ZRXNDnKl8"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/48938155eb24b4ccdde09426066869504c6dab3c/dist/css/bootstrap.min.css">
+    <script>
+function getLatLong1(callback) {
+  var geocoder = new google.maps.Geocoder();
+  var address1 = $('#address1').val();
+  var loc1 = [];
+  geocoder.geocode({ address: address1 }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      loc1[0] = results[0].geometry.location.lat();
+      loc1[1] = results[0].geometry.location.lng();
+      callback(loc1);
+    }
+  });
+}
+function getLatLong2(callback) {
+  var geocoder = new google.maps.Geocoder();
+  var address2 = $('#address2').val();
+  var loc2 = [];
+  geocoder.geocode({ address: address2 }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      loc2[0] = results[0].geometry.location.lat();
+      loc2[1] = results[0].geometry.location.lng();
+      callback(loc2);
+    }
+  });
+}
+$('document').ready(function() {
+  $('#btn').on('click', function() {
+    getLatLong1(function(loc1) {
+      getLatLong2(function(loc2) {
+        console.log('address1', loc1);
+        console.log('address2', loc2);
+        // $.ajax({
+        //   url: './getRoute',
+        //   type: 'POST',
+        //   data: {
+        //     address1: loc1,
+        //     address2: loc2
+        //   }
+        // });
+        //$.redirect('./getRoute',{address1:'loc1'})
+        window.location.replace('./getRoute?loc1='+loc1[0]+'&loc2='+loc1[1]+'&loc3='+loc2[0]+'&loc4='+loc2[1]);
+        //$.post('./getRoute',{address1:loc1,address2:loc2})
+      });
+    });
+  });
+});
+</script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Detection of traffic lights between two routes</h1>
+    <ul className="col-md-4 list-group">
+      <li className="list-group-item">  <p> 1. The user would be provided with two input boxes named <strong>Initial Destination and Final Destination</strong>.</p></li>
+      <li className="list-group-item"><p>2. User needs to provide his/her current location in the first field</p></li>
+      <li className="list-group-item"><p>3. User needs to provide his/her destination location in the second field.</p></li>
+      <li className="list-group-item"><p>4. Once this is done the user can click on the find route button to check the shortest route and how many traffic red lights are present in it.</p></li>
+    </ul>
+    <div>Initial Destination:<input type="text" id="address1"></input></div><br/>
+      <div>Final Destination :<input type="text" id="address2"></input></div><br/>
+      <div><button  class="btn btn-primary" type="button" id="btn">Find Route</button></div><br/>
+      <div><h3>Please provide <strong>Dwarka mor(Delhi) and Shubhash Nagar(Delhi)</strong> to get the idea of our project</h3></div>
+  </body>
+</html>
