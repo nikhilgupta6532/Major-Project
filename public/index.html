@@ -65,17 +65,39 @@ $('document').ready(function() {
     <meta charset="utf-8">
     <title></title>
   </head>
+  <style>
+  div.a{
+    margin-left: 15px;
+  }
+  #address1 {
+    margin-left: 28px;
+  }
+  </style>
   <body>
-    <h1>Detection of traffic lights between two routes</h1>
-    <ul className="col-md-4 list-group">
-      <li className="list-group-item">  <p> 1. The user would be provided with two input boxes named <strong>Initial Destination and Final Destination</strong>.</p></li>
-      <li className="list-group-item"><p>2. User needs to provide his/her current location in the first field</p></li>
-      <li className="list-group-item"><p>3. User needs to provide his/her destination location in the second field.</p></li>
-      <li className="list-group-item"><p>4. Once this is done the user can click on the find route button to check the shortest route and how many traffic red lights are present in it.</p></li>
-    </ul>
-    <div>Initial Destination:<input type="text" id="address1"></input></div><br/>
-      <div>Final Destination :<input type="text" id="address2"></input></div><br/>
-      <div><button  class="btn btn-primary" type="button" id="btn">Find Route</button></div><br/>
-      <div><h3>Please provide <strong>Dwarka mor(Delhi) and Shubhash Nagar(Delhi)</strong> to get the idea of our project</h3></div>
-  </body>
+    <br/>
+    <br/>
+    <br/>
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="a">
+        <div>Source : <input type="text" id="address1"></input></div><br/>
+          <div>Destination : <input type="text" id="address2"></input></div><br/>
+          <div><button  class="btn btn-primary" type="button" id="btn">Find Route</button></div><br/>
+        </div>
+      </div>
+      <div class="col-xs-8">
+        <div><h3>Due to limited data set available for this prototype source and destination are restricted to following set of locations only
+          <ul className="col-md-4 list-group">
+            <li className="list group item">Dwarka mor(Delhi)</li>
+            <li className="list group item">Shubhash Nagar(Delhi)</li>
+          </ul>
+        </h3>
+      </div><br/>
+      <p>Step-1 : Provide Source Address in the first field</p><br/>
+      <p>Step-2 : Provide Destination Address in the second field.</p><br/>
+      <p>Step-3 : Click on Find Route to find the plausible route and number of traffic signals falling on the route.</p><br/>
+      </div>
+    </div>
+
+      </body>
 </html>
